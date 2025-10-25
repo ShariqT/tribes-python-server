@@ -1,0 +1,22 @@
+{% extends "layouts/admin.html" %}
+{% block content %}
+  <div class="columns">
+    <div class="column is-one-quarter">
+      {% include "components/moderator_menu.html" %}
+    </div>
+    <div class="column">
+      <article class="message is-info">
+        <div class="message-header">
+          <p>Limit on number of moderators</p>
+          <button class="delete" aria-label="delete"></button>
+        </div>
+        <div class="message-body">
+          Please choose your moderator team very carefully. There is a limit on the number of 
+          moderators for this version of the server software.
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+{% endblock %}

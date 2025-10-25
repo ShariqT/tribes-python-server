@@ -1,0 +1,33 @@
+{% if error is defined %}
+        <div class="notification is-danger">
+          
+          {{ error }}
+        </div>
+      {% endif %}
+      {% if success is defined %}
+        <div class="notification is-success">
+          
+          {{success}}
+        </div>
+{% endif %}
+<!-- <div class="notification is-info">
+  This message will go out to all of the server's moderators1!
+</div> -->
+<form action="/member/message" method="POST">
+  <div class="field">
+    
+    <div class="select">
+      <select name="to_username">
+        <option value="all">All Members</option>
+      </select>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">
+      What is your message to the members?
+    </label>
+    <textarea class="textarea" name="text"></textarea>
+  </div>
+  <button type="submit" class="button is-fullwidth is-primary">Send</button>
+
+</form>

@@ -1,0 +1,21 @@
+{% extends "layouts/admin.html" %}
+{% block content %}
+  <div class="columns">
+    <div class="column is-one-quarter">
+      {% include "components/member_menu.html" %}
+    </div>
+    <div class="column">
+      <article class="message is-info">
+        <div class="message-header">
+          <p>Limit on number of members</p>
+          <button class="delete" aria-label="delete"></button>
+        </div>
+        <div class="message-body">
+          There is a limit of 2,000 members for this version of the server software.
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+{% endblock %}

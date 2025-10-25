@@ -1,0 +1,14 @@
+{% extends "layouts/admin.html" %}
+{% block content %}
+  <div class="columns">
+    <div class="column is-one-quarter">
+      {% set current_page = "write" %}
+      {% include "components/message_menu.html" %}
+    </div>
+    <div class="column">
+      
+      {% include "components/moderator_message_form.html" %}
+    </div>
+  </div>
+
+{% endblock %}

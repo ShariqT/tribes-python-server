@@ -1,0 +1,14 @@
+{% extends "layouts/admin.html" %}
+{% block content %}
+  <div class="columns">
+    <div class="column is-one-quarter">
+      {% set current_page = "member_block" %}
+      {% include "components/member_menu.html" %}
+    </div>
+    <div class="column">
+      {% set keyform = "member_block" %}
+      {% include "components/keyform.html" %}
+    </div>
+  </div>
+
+{% endblock %}

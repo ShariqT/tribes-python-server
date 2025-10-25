@@ -1,0 +1,16 @@
+[project]
+name = "python-app"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "art>=6.5",
+    "dotenv>=0.9.9",
+    "flask>=3.1.0",
+    "lwe-python>=0.1.3",
+    "pgpy>=0.6.0",
+    "pyotp>=2.9.0",
+    "redis>=6.4.0",
+    "waitress>=3.0.2",
+]

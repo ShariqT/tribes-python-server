@@ -1,0 +1,36 @@
+<html>
+  <head>
+     <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    >
+    <title>SuperUser Dashboard</title>
+  </head>
+  <body>
+    <div class="columns">
+      <div class="column">
+        <nav class="navbar is-black" role="navigation" aria-label="main navigation">
+          <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+              <!-- <a href="/modedit" class="navbar-item">
+                View/Edit Mods
+              </a> -->
+              <a href="/modmessage" class="navbar-item">
+                View/Write Messages
+              </a>
+              <a href="/member" class="navbar-item">
+                View/Edit Members
+              </a>
+              <a href="/access_requests" class="navbar-item">
+                View Access Requests
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+      <div class="container">
+        {% block content %}{% endblock %}
+      </div>
+  </body>
+</html>

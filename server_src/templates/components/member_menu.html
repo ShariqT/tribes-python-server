@@ -1,0 +1,7 @@
+<aside class="menu">
+  <ul class="menu-list">
+    <li><a {% if current_page == "new" %} class="is-active"{% endif %} href="/member/add">Add New Member</a></li>
+    <li><a {% if current_page == "member_block" %} class="is-active"{% endif %}  href="/member/block">Block Member</a></li>
+    <li><a {% if current_page == "member_message" %} class="is-active"{% endif %}  href="/member/message">Message Member</a></li>
+  </ul>
+</aside>

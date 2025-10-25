@@ -1,0 +1,33 @@
+{% extends "layouts/admin.html" %}
+{% block content %}
+  {% if error is defined %}
+    <div class="notification">
+      <button class="delete"></button>
+      {{ error }}
+    </div>
+  {% endif %}
+  <div class="columns">
+    <div class="column">
+    {% for req in accessrequests %}
+      <article class="message">
+        <div class="message-header">
+          <p>Access Request from {{req.from_username}}</p>
+          <button class="delete" aria-label="delete"></button>
+        </div>
+        <div class="message-body">
+          {{ req.from_username }} is requesting access to this server. Do you
+          want to grant it? 
+          <form action="/request_yes" method="POST">
+            <input type="hidden" name="reqID" value="{{req.access_id}}" />
+            <button class="button" type="submit">YES</button>
+          </form>
+          <form action="/request_no" method="POST">
+            <input type="hidden" name="reqID" value="{{req.access_id}}" />
+            <button class="button" type="submit">NO</button>
+          </form>
+        </div>
+      </article>
+</div>
+    {% endfor %}
+  </div>
+{% endblock %}

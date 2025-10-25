@@ -1,0 +1,20 @@
+{% extends "layouts/admin.html" %}
+{% block content %}
+  {% if error is defined %}
+  <a href="/access_requests">Go Back</a>
+    <div class="notification">
+      <button class="delete"></button>
+      {{ error }}
+    </div>
+  {% endif %}
+  {% if accessrequest is defined %}
+  <div class="columns">
+    <div class="column">
+      <div class="notification">
+        <button class="delete"></button>
+        A new member has been added!
+      </div>
+    </div>
+  </div>
+  {% endif %}
+{% endblock %}

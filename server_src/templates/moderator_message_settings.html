@@ -1,0 +1,22 @@
+{% extends "layouts/admin.html" %}
+{% block content %}
+  <div class="columns">
+    <div class="column is-one-quarter">
+      {% include "components/message_menu.html" %}
+    </div>
+    <div class="column">
+      <article class="message is-info">
+        <div class="message-header">
+          <p>Message Center</p>
+          <!-- <button class="delete" aria-label="delete"></button> -->
+        </div>
+        <div class="message-body">
+         This area is where you can send messages to server moderators. You can either send individual messages or mass mailings to all moderators. 
+         Moderators can send you messages as well and you can read them here. 
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+{% endblock %}

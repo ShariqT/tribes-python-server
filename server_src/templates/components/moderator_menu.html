@@ -1,0 +1,7 @@
+<aside class="menu">
+        <ul class="menu-list">
+          <li><a {% if current_page == "new" %} class="is-active"{% endif %} href="/modedit/add">Add New Moderator</a></li>
+          <li><a {% if current_page == "delete" %} class="is-active"{% endif %}  href="/modedit/delete">Delete Moderator</a></li>
+          <li><a {% if current_page == "message" %} class="is-active"{% endif %}  href="/modedit/message">Message Moderators</a></li>
+        </ul>
+      </aside>

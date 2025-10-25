@@ -1,0 +1,12 @@
+<table class="table is-fullwidth is-bordered">
+  <tbody>
+    {% for message in messages %}
+    <tr
+    {% if message.is_read == 0 %} class="has-text-weight-bold" {% endif %}>
+      <td>ID: {{message.id}}</td>
+      <td>From: {{message.from_username}}</td>
+      <td><a href="/modmessage/message/read/{{message.id}}">Open</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

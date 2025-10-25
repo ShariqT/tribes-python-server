@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    >
+  <title>Login</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- <nav class="level"> -->
+        <!-- <div class="level-item"> -->
+          <form action="/supmod" method="post">
+            <div class="field">
+              <label class="label">Public Key11</label>
+              <div class="control">
+                <textarea class="textarea" name="pubkey" placeholder="Put your public key here"></textarea>
+              </div>
+            </div>
+            <input type="hidden" name="skip" value="True" />
+            <button class="button primary" type="submit">Login</button>
+          </form>
+        <!-- </div> -->
+      <!-- </nav> -->
+    </div>
+  </body>
+</html>

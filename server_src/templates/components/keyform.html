@@ -1,0 +1,43 @@
+{% if error is defined %}
+        <div class="notification is-danger">
+          
+          {{ error }}
+        </div>
+      {% endif %}
+      {% if success is defined %}
+        <div class="notification is-green">
+          
+          {{success}}
+        </div>
+      {% endif %}
+      {% if keyform == "new" %}
+      <form action="/modedit/add" method="post">
+      {% endif %}
+       {% if keyform == "delete" %}
+      <form action="/modedit/delete" method="post">
+      {% endif %}
+      {% if keyform == "new_member" %}
+      <form action="/member/add" method="post">
+      {% endif %}
+        {% if keyform == "member_block" %}
+      <form action="/member/block" method="post">
+      {% endif %}
+
+        <div class="field">
+          <label class="label">
+             {% if keyform == "new" %} Enter public key of the new moderator {% endif %}
+            {% if keyform == "delete" %} Enter public key of the moderator that you want to revoke access to the server{% endif %}
+            {% if keyform == "new_member" %} Enter public key of the member that you want to add{% endif %}
+            {% if keyform == "member_block" %} Enter public key of the member that you want to block{% endif %}
+
+          </label>
+          <textarea class="textarea" 
+            {% if keyform == "new" %} name="new_moderator" {% endif %}
+            {% if keyform == "delete" %} name="del_moderator" {% endif %}
+            {% if keyform == "new_member" %} name="new_member" {% endif %}
+            {% if keyform == "member_block" %} name="member_block" {% endif %}
+
+          ></textarea>
+        </div>
+        <button type="submit" class="button is-fullwidth">Submit</button>
+      </form>

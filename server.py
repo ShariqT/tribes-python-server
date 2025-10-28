@@ -7,17 +7,20 @@ import argparse
 import redis
 import subprocess
 import datastore
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 parser = argparse.ArgumentParser(prog="Secret Garden Server", description="Secret Garden Server Admin")
 parser.add_argument("--check-db-connection", action='store_true')
 parser.add_argument("--setup-db", action='store_true')
 parser.add_argument("--add-superuser")
+parser.add_argument('--run-dev-server', action='store_true')
 parser.add_argument('--run-server', action='store_true')
-parser.add_argument('--port', type=int)
+parser.add_argument('--port', type=int, default=8080)
 
 args = parser.parse_args()
-print(args)
-r = redis.Redis(host='localhost', port=6380, db=0, protocol=3, decode_responses=True)
+r = redis.Redis(host=os.environ['REDIS_HOST'], port=os.environ['REDIS_PORT'], db=os.environ['REDIS_DB'], protocol=3, decode_responses=True)
 
 if args.check_db_connection is True:
   try:
@@ -56,8 +59,17 @@ if args.add_superuser is not None:
 # the databse logins/host and the host and ports to serve the flask app on
 # also put in the production version of this call which will call waitress, 
 # which is already installed. 
+if args.run_dev_server is True:
+  os.environ['MODE'] = 'DEBUG'
+  subprocess.call(f"flask --app server_src --debug run --port {args.port}", shell=True)
+
 if args.run_server is True:
-  subprocess.call("flask --app server_src --debug run --port 8080", shell=True)
+  from waitress import serve
+  from server_src import app
+  os.environ['MODE'] = 'PROD'
+  print(f"Running production server on port {args.port}")
+  serve(app, host='0.0.0.0', port=args.port)
+
 
 
 

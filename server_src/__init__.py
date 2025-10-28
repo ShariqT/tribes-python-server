@@ -16,9 +16,9 @@ load_dotenv()
 
 app = Flask(__name__)
 app.register_blueprint(clientAPI, url_prefix="/api")
-r = redis.Redis(host='localhost', port=6380, db=0, protocol=3)
-hotp = pyotp.HOTP('base32secret3232')
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+r = redis.Redis(host=os.environ['REDIS_HOST'], port=os.environ['REDIS_PORT'], db=os.environ['REDIS_DB'], protocol=3)
+hotp = pyotp.HOTP(os.environ['OTP_KEY'])
+app.secret_key = bytes(os.environ['APP_KEY'], encoding='utf8') #'_5#y2L"F4Q8z\n\xec]/'
 
 
 @app.route("/")
@@ -32,7 +32,7 @@ def login_moderator():
     return render_template("mod_login.html")
 
   if request.method == 'POST':
-    if request.form['skip'] == "True":
+    if request.form['skip'] == "True" and os.environ['MODE'] == 'DEBUG':
       return render_template("mod_response.html", message="12345")
     session.pop('mod_number', None)
     pubkey = garden.create_key_from_text(request.form['pubkey'].strip())

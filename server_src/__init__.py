@@ -57,7 +57,7 @@ def login_moderator():
 def code_response():
   approved = False
 
-  if request.form['password'] == "12345":
+  if request.form['password'] == "12345" and os.environ['MODE'] == 'DEBUG':
     approved = True
     session['is_mod'] = True
     return redirect("/dashboard")

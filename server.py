@@ -20,7 +20,14 @@ parser.add_argument('--run-server', action='store_true')
 parser.add_argument('--port', type=int, default=8080)
 
 args = parser.parse_args()
-r = redis.Redis(host=os.environ['REDIS_HOST'], port=os.environ['REDIS_PORT'], db=os.environ['REDIS_DB'], protocol=3, decode_responses=True)
+r = redis.Redis(host=os.environ['REDIS_HOST'], 
+    port=os.environ['REDIS_PORT'], 
+    db=os.environ['REDIS_DB'],
+    username=os.environ['REDIS_USERNAME'],
+    password=os.environ['REDIS_PASSWORD'],
+    protocol=3, 
+    decode_responses=True
+)
 
 if args.check_db_connection is True:
   try:
@@ -36,6 +43,7 @@ if args.setup_db is True:
   r.rpush("active_auth_codes", "start")
   datastore.create_people_index()
   datastore.create_people_index("moderators")
+  datastore.create_people_index("blocked")
   datastore.messages.create_message_index()
   print("Created people indexes")
   print("Created message index")

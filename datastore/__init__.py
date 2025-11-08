@@ -12,7 +12,9 @@ load_dotenv()
 
 pool = redis.ConnectionPool(
   host=os.environ['REDIS_HOST'], 
-  port=os.environ['REDIS_PORT'], 
+  port=os.environ['REDIS_PORT'],
+  username=os.environ['REDIS_USERNAME'],
+  password=os.environ['REDIS_PASSWORD'],
   db=os.environ['REDIS_DB'], 
   protocol=3, 
   decode_responses=True)

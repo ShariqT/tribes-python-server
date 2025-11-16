@@ -22,7 +22,6 @@ def create_topic(username, link, title, text, image=None):
     }
     r.set(f"topics:{topic['pk']}", json.dumps(topic), ex=timedelta(hours=2))
   except Exception as e:
-    print(e)
     raise Exception(f"Could not create topic because {str(e)}")
 
 def get_topics():

@@ -47,6 +47,7 @@ if args.setup_db is True:
   datastore.messages.create_message_index()
   print("Created people indexes")
   print("Created message index")
+  print("Created blocked index")
   print("You can now add a superuser to this server!")
 
 if args.add_superuser is not None:

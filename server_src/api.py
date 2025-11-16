@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, render_template
 from flask.json import jsonify
 import datastore
 from datastore import topics
@@ -8,6 +8,7 @@ from datastore import access as access_request
 from datastore import wall
 import os
 from dotenv import load_dotenv
+import markdown
 
 load_dotenv()
 clientAPI = Blueprint('clientAPI', __name__)
@@ -82,6 +83,7 @@ def create_topic():
   try:
     if datastore.is_key_blocked(pubkey) == True:
       return jsonify({ "access_allowed": False })
+
     link = None
     if data['link'] != "":
       link = data['link']
@@ -124,6 +126,28 @@ def get_current_wall():
     return jsonify({"wall": results })
   except Exception as e:
     return jsonify({"error": f"Could not get the current state of the wall becase {e}"})
+
+@clientAPI.route("welcome", methods=['POST'])
+def publish_welcome_message():
+  try:
+    requestor_key = garden.create_key_from_text(request.form['key'])
+    access_level = os.getenv('PUBLIC_ACCESS', '0')
+    if access_level == '1':
+      if os.path.exists("./server_src/templates/welcome_public.md") is True:
+        fp = open("./server_src/templates/welcome_public.md")
+        welcome_message = markdown.markdown(fp.read())
+      else:
+        welcome_message = "Welcome to my server"
+    else:
+      if os.path.exists("../templates/welcome_member.md") is True:
+        fp = open("../templates/welcome_member.md")
+        welcome_message = markdown.markdown(fp.read())
+      else:
+        welcome_message = "Welcome, member of our server! I will be updating this with information pertaining to our members."
+    return jsonify({"welcome": welcome_message })
+  except Exception as e:
+    return jsonify({"error": f"Cannot send the welcome message: {str(e)}"})
+
 
 @clientAPI.route("/wall_post", methods=['POST'])
 def post_new_wall_message():

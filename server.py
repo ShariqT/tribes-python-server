@@ -7,6 +7,7 @@ import argparse
 import redis
 import subprocess
 import datastore
+from datastore import messages
 from dotenv import load_dotenv
 import os
 load_dotenv()
@@ -44,7 +45,7 @@ if args.setup_db is True:
   datastore.create_people_index()
   datastore.create_people_index("moderators")
   datastore.create_people_index("blocked")
-  datastore.messages.create_message_index()
+  messages.create_message_index()
   print("Created people indexes")
   print("Created message index")
   print("Created blocked index")

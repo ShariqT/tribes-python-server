@@ -50,6 +50,7 @@ if args.setup_db is True:
   print("Created message index")
   print("Created blocked index")
   print("You can now add a superuser to this server!")
+  r.close()
 
 if args.add_superuser is not None:
   keyfile = open(args.add_superuser)

@@ -20,7 +20,7 @@ message_schema = (
 )
 
 
-def create_message_index(pool):
+def create_message_index():
   try:
     r = redis.Redis(connection_pool=pool)
     r.ft(f"idx:messages").create_index(

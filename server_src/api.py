@@ -127,7 +127,7 @@ def get_current_wall():
   except Exception as e:
     return jsonify({"error": f"Could not get the current state of the wall becase {e}"})
 
-@clientAPI.route("welcome", methods=['POST'])
+@clientAPI.route("/welcome", methods=['POST'])
 def publish_welcome_message():
   try:
     requestor_key = garden.create_key_from_text(request.form['key'])
